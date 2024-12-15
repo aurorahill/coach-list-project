@@ -1,4 +1,5 @@
 let timer;
+const apiKey = process.env.VUE_APP_FIREBASE_API_KEY;
 
 export default {
   async login(context, payload) {
@@ -15,11 +16,9 @@ export default {
   },
   async auth(context, payload) {
     const mode = payload.mode;
-    let url =
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDd7jkqUIBH_2p7pHSO0BBI1BfRF6BIFTI';
+    let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
     if (mode === 'signup') {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDd7jkqUIBH_2p7pHSO0BBI1BfRF6BIFTI';
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
     }
     const response = await fetch(url, {
       method: 'POST',
